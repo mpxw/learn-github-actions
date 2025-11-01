@@ -4,7 +4,11 @@ jobs:
   yarn-build:
     name: yarn-build工作
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v5
-    - run: yarn install
-    - run: yarn run build
+    - name: 读取仓库内容
+      uses: actions/checkout@v5
+    - name: 安装依赖
+      run: yarn install
+    - name: 项目打包
+      run: yarn run build
