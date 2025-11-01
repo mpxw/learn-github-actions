@@ -1,12 +1,10 @@
 on: push
 
 jobs:
-  job1:
+  yarn-build:
+    name: yarn-build工作
     runs-on: ubuntu-latest
     steps:
-    - run: pwd
-    - run: ls
-  job2:
-    runs-on: windows-latest
-    steps:
-    - run: node --version
+    - uses: actions/checkout@v5
+    - run: yarn install
+    - run: yarn run build
