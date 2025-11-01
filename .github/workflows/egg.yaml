@@ -1,4 +1,8 @@
+name: 打包React项目
 on: push
+
+permissions:
+  contents: write
 
 jobs:
   yarn-build:
@@ -8,7 +12,13 @@ jobs:
     steps:
     - name: 读取仓库内容
       uses: actions/checkout@v5
-    - name: 安装依赖
+
+    - name: 安装依赖和项目打包
       run: yarn install
-    - name: 项目打包
       run: yarn run build
+
+    - name: 部署
+      uses: JamesIves/github-pages-deploy-action@v4
+      with: 
+        branch: gh-pages
+        folder: dist
